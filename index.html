@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="LSD Open builds, manages and runs hybrid, multi cloud Kubernetes platforms to allow your team to deliver applications faster." />
+    <title>LSD Open Automation and AI - Welcome to the Swarm!</title>
+
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #070707;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background-color: #070707;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        span {
+            color: #00ff11;
+            font-family: monospace;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .blinker {
+            opacity: 1;
+            margin-bottom: -2px;
+            height: 15px;
+            margin-left: -5px;
+            border-left: 7px solid #00ff11;
+            animation: blinker 0.9s steps(2, start) infinite;
+        }
+
+        @keyframes blinker {
+            to {
+                visibility: hidden;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                font-size: 2em;
+            }
+
+            .content {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <img src="img/logo.png" alt="logo">
+        </div>
+        <div class="content">
+            <span id="AIConsoleWriter" class="shell"></span><span class='blinker'>&#32;</span>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+<script>
+    var data = [
+        {
+            AIConsoleWriter: "<span>Welcome to the AI Automation Singularity<br/><br/>Accelerate your organisation's automation journey using Red Hat Ansible Lightspeed with IBM watsonx Code Assistant.<br/></span><br/><br/><span>Do you want <b>your</b> organisation to travel at...<i>lightspeed</i>?<br/> Y / N</span><br/>"
+        }
+    ];
+    var allElements = document.getElementsByClassName("shell");
+    for (var j = 0; j < allElements.length; j++) {
+        var currentElementId = allElements[j].id;
+        var currentElementIdContent = data[0][currentElementId];
+        var element = document.getElementById(currentElementId);
+        var devTypeText = currentElementIdContent;
+
+        // type code
+        var i = 0, isTag, text;
+        (function type() {
+            text = devTypeText.slice(0, ++i);
+            if (text === devTypeText) return;
+            element.innerHTML = text + `<span class='blinker'>&#32;</span>`;
+            var char = text.slice(-1);
+            if (char === "<") isTag = true;
+            if (char === ">") isTag = false;
+            if (isTag) return type();
+            setTimeout(type, 60);
+        })();
+    }
+</script>

@@ -1,0 +1,33 @@
+name: 'Semantic Release'
+
+on:
+  push:
+    branches:
+      - main
+permissions:
+  id-token: write
+  issues: write
+  pull-requests: write
+  contents: write
+
+jobs:
+  sementic-release:
+    name: 'Semantic Release'
+    runs-on: ubuntu-latest
+    environment: production
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Semantic Release
+        uses: docker://ghcr.io/codfish/semantic-release-action:v2
+        id: semantic
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Version
+        run: echo ${{ steps.semantic.outputs.release-version }}
